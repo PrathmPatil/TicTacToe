@@ -1,46 +1,78 @@
 package com.tictoctoegame;
 import java.util.Scanner;
  public class TicTocToeGame {
-	 static int row,col;
-	 static char player='X';
-	 private static void displayBoard(char[][] board) {
-	        for (int i = 0; i < board.length; i++) {
-	            for (int j = 0; j < board[i].length; j++) {
-	                if (j == board[i].length - 1) 
-	                	System.out.print(board[i][j]);
-	                else
-	                	System.out.print( board[i][j] + " | ");
-	            }
-	            System.out.println();
-	        }}
-	  static void uc1() {
-		 System.out.println("*********Welcome in TicTocToeGame*********");
-	 }
-	 public static void main(String []args) {
-		 uc1();
-		 Scanner sc=new Scanner(System.in);
-		 /*
-		  * Create a board for each element
-		  */
-		 char[][] board=new char[3][3];
-		 char ch='1';
-		 for(int i=0;i<3;i++) {
-			 for(int j=0;j<3;j++) {
-				 System.out.print(ch+" | ");
-				 board[i][j]=ch++; 
-			 }
-			 System.out.println();
-		 }
-		 /*
-		  * Choose a player 'X'or 'Y'
-		  */
-		 System.out.println("Enter a row and column (0, 1, or 2); for player " + player + ":");
-		 row = sc.nextInt();
-         col = sc.nextInt();
-         board[row][col] = player;
-         displayBoard(board);
 
-         
-		 
-	 }
+		public static void main(String[] args) {
+			System.out.println("welcome to tic tac toe game");
+			char [][] gameBoard ={{' ','|',' ','|',' '},
+				{'-','+','-','+', '-'},
+				{' ','|',' ','|',' '},
+				{'-','+','-','+', '-'},
+				{' ','|',' ','|',' '}};
+			showboard(gameBoard);
+			
+			Scanner sc=new Scanner(System.in);
+			System.out.println("enter your placements(1-9)::");
+			int pos=sc.nextInt();
+			
+			placepiece (gameBoard,pos,"player");
+		}
+		      public static void showboard(char [][]gameBoard) {
+			    for(char[] row : gameBoard) {
+				for(char c : row) {
+					System.out.print(c);
+				}
+				System.out.println();
+				}
+		        }
+	             
+		  public static void placepiece(char[][]gameBoard,int pos,String user) { 
+			  char symbol=' ';
+			  if(user.equals("player")) {
+				  symbol='x';
+			  }else if(user.equals("computer")) {
+				  symbol='o';
+			  }
+			  switch(pos) {
+			  case 1:
+				  gameBoard[0][0]=symbol;
+				  break;
+				  
+			  case 2:
+				  gameBoard[0][2]=symbol;
+				  break;
+				  
+			  case 3:
+				  gameBoard[0][4]=symbol;
+				  break;
+				  
+			  case 4:
+				  gameBoard[2][0]=symbol;
+				  break;
+				  
+			  case 5:
+				  gameBoard[2][2]=symbol;
+				  break;
+				  
+			  case 6:
+				  gameBoard[2][4]=symbol;
+				  break;
+				  
+			  case 7:
+				  gameBoard[4][0]=symbol;
+				  break;
+				  
+			  case 8:
+				  gameBoard[4][2]=symbol;
+				  break;
+				  
+			  case 9:
+				  gameBoard[4][4]=symbol;
+				  break;
+				       default:
+				  break;
+			  }
+			  showboard(gameBoard);
+				  
+			  }
  }
