@@ -1,40 +1,49 @@
 package com.tictoctoegame;
+import java.util.Random;
 import java.util.Scanner;
  public class TicTocToeGame {
-
-		public static void main(String[] args) {
+	 
+	 public static void main(String[] args) {
+		 
 			System.out.println("welcome to tic tac toe game");
 			char [][] gameBoard ={{' ','|',' ','|',' '},
 				{'-','+','-','+', '-'},
 				{' ','|',' ','|',' '},
 				{'-','+','-','+', '-'},
 				{' ','|',' ','|',' '}};
-			showboard(gameBoard);
-			
-			Scanner sc=new Scanner(System.in);
-			System.out.println("enter your placements(1-9)::");
-			int pos=sc.nextInt();
-			
-			placepiece (gameBoard,pos,"player");
-		}
-		      public static void showboard(char [][]gameBoard) {
-			    for(char[] row : gameBoard) {
-				for(char c : row) {
-					System.out.print(c);
-				}
-				System.out.println();
-				}
-		        }
-	             
-		  public static void placepiece(char[][]gameBoard,int pos,String user) { 
-			  char symbol=' ';
-			  if(user.equals("player")) {
-				  symbol='x';
-			  }else if(user.equals("computer")) {
-				  symbol='o';
-			  }
-			  switch(pos) {
-			  case 1:
+			printgameboard(gameBoard);
+			while(true) {
+
+				Scanner sc=new Scanner(System.in);
+				System.out.println("enter your placements(1-9)::");
+				int pos=sc.nextInt();
+				
+				placepiece(gameBoard,pos,"player");
+				
+				Random run=new Random();
+				int computerpos=run.nextInt(9)+1;
+				System.out.println("Computer Play::");
+				
+				placepiece(gameBoard,computerpos,"computer");
+			}
+			}
+	      public static void printgameboard(char[][] gameBoard) {
+	    	  for(char[] row : gameBoard) {
+	  			for(char c : row) {
+	  				System.out.print(c);
+	  			}
+	  			System.out.println();
+	  			}
+	            }
+	      public static void placepiece(char[][]gameBoard,int pos,String user) {
+	    	char symbol=' ';
+	    	if(user.equals("player")) {
+	    		symbol='x';
+	    	}else if(user.equals("computer")) {
+	    		symbol='o';
+	    	}
+	    	switch(pos) {
+	    	 case 1:
 				  gameBoard[0][0]=symbol;
 				  break;
 				  
@@ -71,8 +80,9 @@ import java.util.Scanner;
 				  break;
 				       default:
 				  break;
-			  }
-			  showboard(gameBoard);
-				  
-			  }
+	    	}
+	    	  printgameboard(gameBoard);
+	    		
+	    	}
+	      
  }
